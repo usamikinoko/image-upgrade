@@ -1,0 +1,103 @@
+# 图像处理配置文件
+# 此配置文件用于控制图像处理的各个参数
+
+# 输入输出设置
+io:
+  # 输入图像文件名（位于项目根目录）
+  input_image: "image.png"
+  # 输出目录（相对于项目根目录）
+  output_directory: "outputs"
+  # 是否保存中间步骤的图像
+  save_intermediate: true
+  # 输出图像格式（png, jpg, webp等）
+  output_format: "png"
+  # 输出图像质量（仅对jpg和webp有效，范围1-100）
+  output_quality: 95
+
+# 步骤1: 直方图模糊化参数
+blur:
+  # 是否启用此步骤
+  enabled: true
+  # 模糊类型: gaussian, box, median
+  type: "median"
+  # 高斯模糊参数
+  gaussian:
+    # 模糊半径（值越大越模糊）
+    radius: 1
+  # 盒式模糊参数
+  box:
+    # 模糊半径
+    radius: 2
+  # 中值模糊参数
+  median:
+    # 滤波器大小（必须是奇数）
+    size: 1
+
+# 步骤2: 饱和度调整参数
+saturation:
+  # 是否启用此步骤
+  enabled: true
+  # 饱和度增强因子（1.0为原始饱和度，大于1增加饱和度，小于1降低饱和度）
+  factor: 1.2
+
+# 步骤3: 锐化参数
+sharpen:
+  # 是否启用此步骤
+  enabled: true
+  # 锐化类型: basic, unsharp_mask
+  type: "basic"
+  # 基本锐化参数
+  basic:
+    # 锐化因子（值越大越锐化）
+    factor: 10.0
+  # 反锐化掩蔽参数
+  unsharp_mask:
+    # 半径
+    radius: 1.4
+    # 数量（百分比）
+    percent: 150
+    # 阈值
+    threshold: 3
+
+# 其他可选处理步骤
+additional:
+  # 亮度调整
+  brightness:
+    # 是否启用
+    enabled: false
+    # 亮度因子（1.0为原始亮度）
+    factor: 1.1
+  
+  # 对比度调整
+  contrast:
+    # 是否启用
+    enabled: false
+    # 对比度因子（1.0为原始对比度）
+    factor: 1.1
+  
+  # 色调调整
+  hue:
+    # 是否启用
+    enabled: false
+    # 色调偏移（度数，范围0-360）
+    shift: 0
+  
+  # 裁剪
+  crop:
+    # 是否启用
+    enabled: false
+    # 裁剪区域（像素或百分比）
+    left: 0
+    top: 0
+    right: "100%"
+    bottom: "100%"
+  
+  # 调整大小
+  resize:
+    # 是否启用
+    enabled: false
+    # 新尺寸（像素或百分比）
+    width: "100%"
+    height: "100%"
+    # 保持宽高比
+    keep_aspect_ratio: true
